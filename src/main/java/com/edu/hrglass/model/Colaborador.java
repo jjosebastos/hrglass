@@ -1,7 +1,7 @@
 package com.edu.hrglass.model;
 
 import java.util.Date;
-import java.util.Objects;
+import java.util.Random;
 
 public class Colaborador {
     private Long id;
@@ -12,7 +12,7 @@ public class Colaborador {
     private Long idDepartamento;
 
     public Colaborador(Long id, String ra, String nome, String sexo, Date dataNascimento, Long idDepartamento) {
-        this.id = id;
+        this.id = (id == null) ? Math.abs(new Random().nextLong()) : id;
         this.ra = ra;
         this.nome = nome;
         this.sexo = sexo;
@@ -54,5 +54,29 @@ public class Colaborador {
                 ", dataNascimento=" + dataNascimento +
                 ", idDepartamento=" + idDepartamento +
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setRa(String ra) {
+        this.ra = ra;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public void setIdDepartamento(Long idDepartamento) {
+        this.idDepartamento = idDepartamento;
     }
 }
