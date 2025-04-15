@@ -29,25 +29,26 @@ public class DatabaseSeeder {
 
         @PostConstruct
         public void init(){   
-                departamentoRepository.saveAll(List.of(
+                var departamento = List.of(
                         Departamento.builder().nome("RH").descricao("DEPARTAMENTO DE RECURSOS HUMANOS").build(),
                         Departamento.builder().nome("TI").descricao("DEPARTAMENTO DE SUPORTE TECNICO").build(),
                         Departamento.builder().nome("FINANCEIRO").descricao("DEPARTAMENTO DA AREA FINANCEIRA") .build()
-                        ));
-        
+                        );
+                departamentoRepository.saveAll(departamento);
 
-                colaboradorRepository.saveAll(List.of(
+                var colaborador = List.of(
                     Colaborador.builder().ra("1234567").nome("JOSÉ BEZERRA").sexo("M").dataNascimento(LocalDate.of(2000, 8,10)).idDepartamento(1L).build(),
                         Colaborador.builder().ra("1234568").nome("NICOLAS").sexo("M").dataNascimento(LocalDate.of(2004, 7,27)).idDepartamento(1L).build(),
                         Colaborador.builder().ra("1234569").nome("HENRY").sexo("M").dataNascimento(LocalDate.of(2005, 4,7)).idDepartamento(1L).build()
-                        ));
+                        );
+                colaboradorRepository.saveAll(colaborador);
 
-
-                crachaRepository.saveAll(List.of(
-                    Cracha.builder().cracha("1245123").dataCriacao(LocalDate.of(2024, 3, 28)).statusCracha(StatusCracha.ATIVO).build(),
-                    Cracha.builder().cracha("1246789").dataCriacao(LocalDate.of(2024, 2, 10)).statusCracha(StatusCracha.BLOQUEADO).build(),
-                    Cracha.builder().cracha("1234567").dataCriacao(LocalDate.of(2025, 4, 9)).statusCracha(StatusCracha.ATIVO).build()
-                    ));
+                    var cracha = List.of(
+                        Cracha.builder().cracha("1245123").dataCriacao(LocalDate.of(2024, 3, 28)).colaborador(colaborador.get(0)).statusCracha(StatusCracha.ATIVO).build(),
+                        Cracha.builder().cracha("1246789").dataCriacao(LocalDate.of(2024, 2, 10)).colaborador(colaborador.get(1)).statusCracha(StatusCracha.BLOQUEADO).build(),
+                        Cracha.builder().cracha("1234567").dataCriacao(LocalDate.of(2025, 4, 9)).colaborador(colaborador.get(2)).statusCracha(StatusCracha.ATIVO).build()
+                        );
+                crachaRepository.saveAll(cracha);
                     
     }
 

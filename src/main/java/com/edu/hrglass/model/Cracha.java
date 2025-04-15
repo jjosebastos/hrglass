@@ -33,7 +33,7 @@ public class Cracha {
     private String cracha;
     @PastOrPresent(message = "data da criação não pode ser futura.")
     private LocalDate dataCriacao;
-    @NotBlank(message = "valor do status não pode ser vazio.")
+    @NotNull(message = "valor do status não pode ser vazio.")
     @Enumerated
     private StatusCracha statusCracha;
     @ManyToOne
