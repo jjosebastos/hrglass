@@ -1,82 +1,43 @@
 package com.edu.hrglass.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Random;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Colaborador {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "ra não pode ser vazio.")
+    @Size (min = 1, max = 12)
     private String ra;
+    @NotBlank(message = "Nome não pode ser vazio.")
     private String nome;
+    @Size(max = 1, message = "Sexo só pode conter um caractere.")
     private String sexo;
-    private Date dataNascimento;
+    @PastOrPresent(message = "A data de nascimento tem que ser no passado")
+    private LocalDate dataNascimento;
+    @NotNull(message = "O valir não pode ser nulo.")
     private Long idDepartamento;
 
-    public Colaborador(Long id, String ra, String nome, String sexo, Date dataNascimento, Long idDepartamento) {
-        this.id = (id == null) ? Math.abs(new Random().nextLong()) : id;
-        this.ra = ra;
-        this.nome = nome;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
-        this.idDepartamento = idDepartamento;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getRa() {
-        return ra;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public Long getIdDepartamento() {
-        return idDepartamento;
-    }
-
-    @Override
-    public String toString() {
-        return "Colaborador{" +
-                "id=" + id +
-                ", ra='" + ra + '\'' +
-                ", nome='" + nome + '\'' +
-                ", sexo='" + sexo + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", idDepartamento=" + idDepartamento +
-                '}';
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setRa(String ra) {
-        this.ra = ra;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public void setIdDepartamento(Long idDepartamento) {
-        this.idDepartamento = idDepartamento;
-    }
+    
 }

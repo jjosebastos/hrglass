@@ -2,54 +2,42 @@ package com.edu.hrglass.model;
 
 import java.time.LocalDate;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cracha {
+    
+    @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long idCracha;
-    private int cracha;
+    @NotBlank(message = "valor do crachá não pode ser vazio.")
+    private String cracha;
+    @PastOrPresent(message = "data da criação não pode ser futura.")
     private LocalDate dataCriacao;
-    private String status;
-    private Long idColab;
-
-    public Cracha(Long idCracha, int cracha, String status, Long idColab) {
-        this.idCracha = idCracha;
-        this.cracha = cracha;
-        this.dataCriacao = LocalDate.now();
-        this.status = status;
-        this.idColab = idColab;
-    }
-
-    public Long getIdCracha() {
-        return idCracha;
-    }
-
-    public void setIdCracha(Long idCracha) {
-        this.idCracha = idCracha;
-    }
-
-    public int getCracha() {
-        return cracha;
-    }
-
-    public void setCracha(int cracha) {
-        this.cracha = cracha;
-    }
-
-    public LocalDate getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Long getIdColab() {
-        return idColab;
-    }
-
-    public void setIdColab(Long idColab) {
-        this.idColab = idColab;
-    }
+    @NotBlank(message = "valor do status não pode ser vazio.")
+    @Enumerated
+    private StatusCracha statusCracha;
+    @ManyToOne
+    @JoinColumn(name = "colaborador_id", nullable = false)
+    private Colaborador colaborador;
+   
 }

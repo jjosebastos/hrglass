@@ -1,65 +1,72 @@
 package com.edu.hrglass.controller;
 
+import com.edu.hrglass.exception.ColaboradorNotFoundException;
 import com.edu.hrglass.model.Colaborador;
+import com.edu.hrglass.repository.ColaboradorRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
+
+
+@RestController()
+@RequestMapping("/colaboradores")
 public class ColaboradorController {
     
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private final List<Colaborador> repository = new ArrayList<>();
+    @Autowired
+    private ColaboradorRepository colaboradorRepository;
 
-    // GET ALL
-    @GetMapping("/colaboradores")
-    public List<Colaborador> index() {
-        return repository;
+    @GetMapping("/all")
+    public List<Colaborador> findAll() {
+        return colaboradorRepository.findAll();
     }
+    
 
     // GET BY ID
-    @GetMapping("/colaboradores/{id}")
+    @GetMapping("/{id}")
     public Colaborador getById(@PathVariable Long id) {
         log.info("Buscando colaborador por ID: " + id);
         return getColaborador(id);
     }
 
     // POST
-    @PostMapping("/colaboradores")
+    @PostMapping
     public ResponseEntity<Colaborador> create(@RequestBody Colaborador colaborador) {
         log.info("Cadastrando colaborador: " + colaborador.getNome());
-        repository.add(colaborador);
+        colaboradorRepository.save(colaborador);
         return ResponseEntity.status(HttpStatus.CREATED).body(colaborador);
     }
 
     // DELETE
-    @DeleteMapping("/colaboradores/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         log.info("Removendo colaborador com ID: " + id);
-        repository.remove(getColaborador(id));
+        colaboradorRepository.delete(getColaborador(id));
     }
 
     // PUT (Update)
-    @PutMapping("/colaboradores/{id}")
+    @PutMapping("/{id}")
     public Colaborador update(@PathVariable Long id, @RequestBody Colaborador colaborador) {
         log.info("Atualizando colaborador com ID: " + id);
-        repository.remove(getColaborador(id));
+        colaboradorRepository.delete(getColaborador(id));
         colaborador.setId(id);
-        repository.add(colaborador);
+        colaboradorRepository.save(colaborador);
         return colaborador;
     }
 
     private Colaborador getColaborador(Long id) {
-        return repository.stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return colaboradorRepository.findById(id)
+            .orElseThrow(() -> new ColaboradorNotFoundException("Colaborador não encontrado"));
+               
     }
 }
