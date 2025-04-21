@@ -20,7 +20,7 @@ public class ValidationHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public List<ValidationError> handle(MethodArgumentNotValidException e){
+    public List<ValidationError> handle(MethodArgumentNotValidException e){ 
         return e.getFieldErrors()
                 .stream()
                 .map(ValidationError::new)
