@@ -41,7 +41,7 @@ public class Cracha {
     private StatusCracha statusCracha;
 
     @ManyToOne
-    @JsonBackReference("produto")
+    @JsonBackReference
     @JoinColumn(name = "colaborador_id", nullable = false)
     private Colaborador colaborador;
    

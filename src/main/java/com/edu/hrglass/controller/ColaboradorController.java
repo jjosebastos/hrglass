@@ -34,7 +34,6 @@ public class ColaboradorController {
     private ColaboradorRepository colaboradorRepository;
 
     @GetMapping
-
     public org.springframework.data.domain.Page<Colaborador> index(
         ColaboradorFilter filter,
         @PageableDefault(size = 10, sort = "date", direction = org.springframework.data.domain.Sort.Direction.DESC) Pageable pageable) {
@@ -44,10 +43,6 @@ public class ColaboradorController {
         return colaboradorRepository.findAll(specification, pageable) ;
     }
       
-    
-
-    // GET BY ID
-
     @GetMapping("/{id}")
     @Cacheable("colaboradorById")
     public Colaborador getById(@PathVariable Long id) {

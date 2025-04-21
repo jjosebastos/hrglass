@@ -46,8 +46,9 @@ public class Colaborador {
     private LocalDate dataNascimento;
     @NotNull(message = "O valir não pode ser nulo.")
     private Long idDepartamento;
+
     @OneToMany(mappedBy = "colaborador", cascade = jakarta.persistence.CascadeType.ALL)
-    @JsonManagedReference("crachaList")
+    @JsonManagedReference
     private List<Cracha> crachaList; 
 
     
