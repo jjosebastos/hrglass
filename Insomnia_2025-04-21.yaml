@@ -1,0 +1,345 @@
+type: collection.insomnia.rest/5.0
+name: rhglass
+meta:
+  id: wrk_e5b7f82bf9f64407abb63a7e47567599
+  created: 1744339444472
+  modified: 1744339444472
+collection:
+  - name: Colaboradores
+    meta:
+      id: fld_f76e78682f7b4a058504498400f02f93
+      created: 1744339457828
+      modified: 1744339457828
+      sortKey: -1744339457828
+    children:
+      - url: http://localhost:8080/colaboradores/
+        name: colaboradoresFilter
+        meta:
+          id: req_61fe63ea16ab4f8799538b0adf279142
+          created: 1744339461084
+          modified: 1745273920503
+          isPrivate: false
+          sortKey: -1744339461084
+        method: GET
+        parameters:
+          - id: pair_d222652b193a47429e0d14774134eb81
+            name: page
+            value: "0"
+            disabled: false
+          - id: pair_bfdf1695a8cd43019d53fdaa3a226b19
+            name: size
+            value: "20"
+            disabled: false
+          - id: pair_21a9a7a1f5704432b7ccaf9e8d9784be
+            name: sort
+            value: ra,desc
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/colaboradores/1
+        name: colaboradoresById
+        meta:
+          id: req_60324e3395b542e4a8a3e26bc554b5ee
+          created: 1744762133641
+          modified: 1745273924269
+          isPrivate: false
+          sortKey: -1744762133641
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/colaboradores/
+        name: New Request
+        meta:
+          id: req_70f13ea1e7fb472982285d28877cc868
+          created: 1745273876251
+          modified: 1745274186807
+          isPrivate: false
+          sortKey: -1745273876251
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Cracha
+    meta:
+      id: fld_b7c181470cc64d47a075cb64ec3ddad2
+      created: 1744762158353
+      modified: 1744762158353
+      sortKey: -1744762158353
+    children:
+      - url: http://localhost:8080/cracha
+        name: crachasFilter
+        meta:
+          id: req_d89bb782d6544e018ae2ca88fe0891ac
+          created: 1744762161759
+          modified: 1745274215367
+          isPrivate: false
+          sortKey: -1744762161759
+        method: GET
+        parameters:
+          - id: pair_719a95c2f319448c9f2646567c77cbc1
+            name: page
+            value: "0"
+            disabled: false
+          - id: pair_b10d74dcacbc4586b699c41767e16b87
+            name: size
+            value: "10"
+            disabled: false
+          - id: pair_2f882eb883c44a1788d1277d07e7f6a7
+            name: sort
+            value: cracha,desc
+            disabled: false
+          - id: pair_b9fba78c1f6a408a8233f913c962f433
+            name: startDate
+            value: 2025-04-01
+            disabled: false
+          - id: pair_8732e5c888a34949af535d6df07852fc
+            name: endDate
+            value: 2025-04-30
+            disabled: false
+          - id: pair_d6787fae43314526b10f6d33b9b163ac
+            name: status
+            value: ATIVO
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cracha
+        name: crachasPost
+        meta:
+          id: req_04201eb3e0e940ed94e6b0e12a865d12
+          created: 1745274219782
+          modified: 1745274944409
+          isPrivate: false
+          sortKey: -1745274219782
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "cracha": "123123",
+              "dataCriacao": "2024-04-21",
+              "statusCracha": "ATIVO",
+              "colaborador": {
+            		"id": 1
+            	}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cracha/1
+        name: delCrachaById
+        meta:
+          id: req_91a69e91b2894ea5968a6990b4a4a858
+          created: 1745274946803
+          modified: 1745275308818
+          isPrivate: false
+          sortKey: -1745274946803
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cracha/1
+        name: getCrachaById
+        meta:
+          id: req_b9d57a2e75a540698c18247238fa5cb1
+          created: 1745275015254
+          modified: 1745275322759
+          isPrivate: false
+          sortKey: -1745275015254
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cracha/1
+        name: putCrachaById
+        meta:
+          id: req_70d0fc37225c49c2b61ea08f1aee2043
+          created: 1745275359869
+          modified: 1745275370898
+          isPrivate: false
+          sortKey: -1745274048016.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "cracha": "123123",
+              "dataCriacao": "2024-04-21",
+              "statusCracha": "ATIVO",
+              "colaborador": {
+            		"id": 1
+            	}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Departamento
+    meta:
+      id: fld_870081f7d17d40dbbc109aa531017a98
+      created: 1745276083624
+      modified: 1745276083624
+      sortKey: -1745276083624
+    children:
+      - url: http://localhost:8080/departamento/4
+        name: getDepartamentoById
+        meta:
+          id: req_8405ce88b3e840f69072d828177a79b2
+          created: 1745276086569
+          modified: 1745277062154
+          isPrivate: false
+          sortKey: -1745276086569
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/departamento
+        name: postDepartamento
+        meta:
+          id: req_c885dc1ff5e24c9c908067e667228496
+          created: 1745276765762
+          modified: 1745276900459
+          isPrivate: false
+          sortKey: -1745275550911.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"idDepartamento": null,
+            	"nome": "TESOURARIA",
+            	"descricao": "RESPONSAVEL POR GERENCIAR O PATRIMONIO"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/departamento/4
+        name: delDepartamentoById
+        meta:
+          id: req_1d0294d245ed49de88b7acdf85027c30
+          created: 1745277045511
+          modified: 1745277049076
+          isPrivate: false
+          sortKey: -1745275818740.25
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_0c844bcff3300aef244505cb8fc40ddd99b00780
+    created: 1744339444477
+    modified: 1744339444477
+environments:
+  name: Base Environment
+  meta:
+    id: env_0c844bcff3300aef244505cb8fc40ddd99b00780
+    created: 1744339444475
+    modified: 1744762252993
+    isPrivate: false
+  data:
+    url: http://localhot:8080
+  subEnvironments:
+    - name: New Environment
+      meta:
+        id: env_288b8c0cd29a48b7a3fcc4deaf4bc400
+        created: 1744339807145
+        modified: 1744339807145
+        isPrivate: true
+        sortKey: 1744339807145
