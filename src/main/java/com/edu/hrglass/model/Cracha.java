@@ -2,16 +2,10 @@ package com.edu.hrglass.model;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 
 import jakarta.annotation.Generated;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -25,6 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cracha {
     
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -40,9 +35,9 @@ public class Cracha {
     @Enumerated
     private StatusCracha statusCracha;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "colaborador_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "colaborador_id")
+    @JsonBackReference(value = "col-crach")
     private Colaborador colaborador;
-   
+
 }

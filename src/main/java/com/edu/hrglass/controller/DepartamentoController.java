@@ -58,7 +58,7 @@ public class DepartamentoController {
     @CacheEvict
     public ResponseEntity<Departamento> create (@RequestBody @Valid DepartamentoDto input) {
         log.info("Cadastrando departamento...");
-        Departamento saved = new Departamento(null, input.getNome(), input.getDescricao());
+        Departamento saved = new Departamento(null, input.getNome(), input.getDescricao(), null);
         departamentoRepository.save(saved);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }

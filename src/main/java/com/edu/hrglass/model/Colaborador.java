@@ -1,25 +1,14 @@
 package com.edu.hrglass.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
-import java.util.Random;
 
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.engine.internal.CascadePoint;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
+import jakarta.persistence.*;
 
-import jakarta.annotation.Generated;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -32,7 +21,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Colaborador {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "ra não pode ser vazio.")
@@ -44,12 +35,16 @@ public class Colaborador {
     private String sexo;
     @PastOrPresent(message = "A data de nascimento tem que ser no passado")
     private LocalDate dataNascimento;
-    @NotNull(message = "O valir não pode ser nulo.")
-    private Long idDepartamento;
 
-    @OneToMany(mappedBy = "colaborador", cascade = jakarta.persistence.CascadeType.ALL)
-    @JsonManagedReference
-    private List<Cracha> crachaList; 
 
+    @JsonManagedReference(value = "dept-col")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "departamento")
+    private Departamento departamento;
+
+
+    @JsonManagedReference(value = "col-crach")
+    @OneToMany(mappedBy = "colaborador",cascade = jakarta.persistence.CascadeType.ALL)
+    private List<Cracha> crachaList;
     
 }

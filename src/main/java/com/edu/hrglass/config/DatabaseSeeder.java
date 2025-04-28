@@ -40,19 +40,21 @@ public class DatabaseSeeder {
                         Colaborador.builder()
                         .ra("1234567").nome("JOSÉ BEZERRA")
                         .sexo("M").dataNascimento(LocalDate.of(2000, 8,10))
-                        .idDepartamento(1L).build(),
-
+                        .departamento(departamento.get(0))
+                        .crachaList(null)
+                        .build(),
                         Colaborador.builder().ra("1234568").nome("NICOLAS")
                         .sexo("M").dataNascimento(LocalDate.of(2004, 7,27))
-                        .idDepartamento(1L).build(),
-                        
+                        .departamento(departamento.get(1))
+                        .crachaList(null)
+                        .build(),
                         Colaborador.builder()
                         .ra("1234569").nome("HENRY").sexo("M")
                         .dataNascimento(LocalDate.of(2005, 4,7))
-                        .idDepartamento(1L).build()
+                        .crachaList(null)
+                        .departamento(departamento.get(2)).build()
                         );
                 colaboradorRepository.saveAll(colaborador);
-
                     var cracha = List.of(
                         Cracha.builder().cracha("1245123").dataCriacao(LocalDate.of(2024, 3, 28))
                         .colaborador(colaborador.get(0)).statusCracha(StatusCracha.ATIVO).build(),
@@ -76,7 +78,6 @@ public class DatabaseSeeder {
                         .builder()
                         .cracha("1234570").dataCriacao(LocalDate.of(2025, 4, 9))
                         .colaborador(colaborador.get(1)).statusCracha(StatusCracha.ATIVO).build(),
-                        
                         
                         Cracha
                         .builder()

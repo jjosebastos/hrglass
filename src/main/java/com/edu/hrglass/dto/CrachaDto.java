@@ -23,6 +23,4 @@ public class CrachaDto {
     private StatusCracha statusCracha;
     @JsonProperty("colaborador")
     private Colaborador colaborador;
-   
-
 }

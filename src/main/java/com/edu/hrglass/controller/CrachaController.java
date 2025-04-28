@@ -36,7 +36,7 @@ public class CrachaController {
     @Autowired
         private ColaboradorRepository colaboradorRepository;
 
-        @PostMapping(consumes = "application/json")
+        @PostMapping
         @CacheEvict
         public ResponseEntity<Cracha> create(@RequestBody @Valid CrachaDto input) {
             if(input.getIdCracha() != null){
@@ -65,7 +65,7 @@ public class CrachaController {
         @GetMapping
         public org.springframework.data.domain.Page<Cracha> index(
             CrachaFilter filter,
-            @PageableDefault(size = 10, sort = "date", 
+            @PageableDefault(size = 10, sort = "cracha", 
             direction = org.springframework.data.domain.Sort.Direction.DESC) Pageable pageable){
                 
                 var specification = CrachaSpecification.withFilters(filter);
@@ -86,7 +86,8 @@ public class CrachaController {
                 return ResponseEntity.badRequest().build();
             }
             
-            var result = this.crachaRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Cracha não encontrado"));
+            var result = this.crachaRepository.
+                    findById(id).orElseThrow(()-> new EntityNotFoundException("Cracha não encontrado"));
             var colab = this.colaboradorRepository.findById(input.getColaborador().getId()).orElseThrow(() -> new EntityNotFoundException("Colaborador não encontrado"));
 
             result.setCracha(input.getCracha());
