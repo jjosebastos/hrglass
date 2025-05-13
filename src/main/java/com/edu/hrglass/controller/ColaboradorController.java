@@ -84,8 +84,7 @@ public class ColaboradorController {
     }
 
     @PutMapping("/{id}")
-    @Operation (
-            summary = "Atualizar colaborador",
+    @Operation ( summary = "Atualizar colaborador", description = "Atualizar colaborador com base em um id",
             responses = {
                     @ApiResponse(responseCode = "200"),
                     @ApiResponse(responseCode = "400")
